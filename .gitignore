@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Compiled source
+dist/
+build/
+*.bundle.js
+
+# Dependency directories
+.jenkins/
+
+# Production build
+/public/
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db

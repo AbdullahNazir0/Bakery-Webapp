@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../src/output.css" />
+		<title>Home | Kashmir Bakery</title>
+	</head>
+	<body>
+		<!-- Header  -->
+		<%- include('../partials/header') %>
+		<main>
+			<!-- Section 1 -->
+			<%- include('../partials/section', {
+				color: "text-gray-100",
+				bgColor: "bg-red-600",
+				headingContent: "Kashmir Bakers and Sweets",
+				subHeadingTextSize: "text-7xl",
+				subHeadingContent: "Your one-stop bakery for all your cravings, right in the heart of town!"
+			}) %>
+			<!-- Section 2 -->
+			<%- include('../partials/section', {
+				color: "text-red-600",
+				bgColor: "bg-white",
+				headingContent: "Looking For Something?",
+				subHeadingTextSize: "text-4xl",
+				subHeadingContent: "Click the button below to check all items in the bakery"
+			}) %>
+		</main>
+		<!-- Footer -->
+		<%- include('../partials/footer') %>
+	</body>
+</html>
