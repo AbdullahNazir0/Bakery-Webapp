@@ -1,5 +1,8 @@
 import express from 'express'
 import { join } from 'path'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
 
@@ -20,8 +23,8 @@ app.use('/', aboutRouter)
 app.use('/', contactRouter)
 app.use('/', authRouter)
 
-app.listen(3000, () => {
-    console.log(`Listening at port 3000: 
-        http://localhost:3000
+app.listen(process.env.PORT, () => {
+    console.log(`Listening at port ${process.env.PORT}: 
+        http://localhost:${process.env.PORT}
     `)
 })
