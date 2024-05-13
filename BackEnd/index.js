@@ -1,30 +1,40 @@
 import express from 'express'
-import { join } from 'path'
+import itemsRoute from './routes/items.routes.js'
 import dotenv from 'dotenv'
-
-dotenv.config()
+import mongoose from 'mongoose'
 
 const app = express()
+dotenv.config()
 
-import homeRouter from './routes/home.routes.js'
-import itemsRouter from './routes/items.routes.js'
-import aboutRouter from './routes/about.routes.js'
-import contactRouter from './routes/contact.routes.js'
-import authRouter from './routes/auth.routes.js'
+// DB connection
+async function connectToDatabase() {
+    try {
+        await mongoose.connect(process.env.DATABASE_CONNECTION, {
+            dbName: "KBS"
+        });
+        console.log("Database connected successfully");
+    } catch (error) {
+        console.log(`Error connecting to db: ${error}`);
+    }
+}
 
-app.set('view engine', 'ejs')
+connectToDatabase();
 
-app.use('/src', express.static(join(process.cwd(), "src")));
-app.use(express.static(join(process.cwd(), "views/pages")));
+app.use('/items', itemsRoute)
 
-app.use('/', homeRouter)
-app.use('/', itemsRouter)
-app.use('/', aboutRouter)
-app.use('/', contactRouter)
-app.use('/', authRouter)
+app.get('/', (req, res) => {
+    res.send("Hello, world")
+})
 
 app.listen(process.env.PORT, () => {
     console.log(`Listening at port ${process.env.PORT}: 
         http://localhost:${process.env.PORT}
     `)
 })
+
+
+// async function disconnectDatabase() {
+//     await mongoose.disconnect()
+// }
+
+// disconnectDatabase()
