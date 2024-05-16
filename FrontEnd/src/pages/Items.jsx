@@ -1,107 +1,34 @@
+import React, { useState, useEffect } from "react"
+import Card from "../components/Card"
+
 const ItemsPage = () => {
+	const [items, setItems] = useState([])
+
+	useEffect(() => {
+		const fetchItems = async () => {
+			try {
+				const response = await fetch("http://localhost:3000/items")
+				const data = await response.json()
+				console.log("Data from API:", data)
+				setItems(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		fetchItems()
+	}, [])
+
 	return (
 		<>
+			<h1 className="font-extrabold px-20 pt-20 pb-12 text-7xl text-red-600">
+				Items
+			</h1>
 			<div className="min-h-screen flex justify-evenly items-center flex-wrap overflow-hidden">
-				<Card
-					title="Product 1"
-					description="Description of Product 1"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 2"
-					description="Description of Product 2"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 3"
-					description="Description of Product 3"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 4"
-					description="Description of Product 4"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 5"
-					description="Description of Product 5"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 6"
-					description="Description of Product 6"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 7"
-					description="Description of Product 7"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 8"
-					description="Description of Product 8"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 6"
-					description="Description of Product 6"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 7"
-					description="Description of Product 7"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 8"
-					description="Description of Product 8"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 6"
-					description="Description of Product 6"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 7"
-					description="Description of Product 7"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 8"
-					description="Description of Product 8"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 6"
-					description="Description of Product 6"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 7"
-					description="Description of Product 7"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 8"
-					description="Description of Product 8"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 6"
-					description="Description of Product 6"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 7"
-					description="Description of Product 7"
-					price="Rs. 250"
-				/>
-				<Card
-					title="Product 8"
-					description="Description of Product 8"
-					price="Rs. 250"
-				/>
+				{items ? (
+					items.map((item) => <Card key={item._id} {...item} />)
+				) : (
+					<h2>No Items Found</h2>
+				)}
 			</div>
 		</>
 	)

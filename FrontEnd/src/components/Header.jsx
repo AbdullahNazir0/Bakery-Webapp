@@ -1,3 +1,5 @@
+import React from "react"
+
 const Header = () => {
 	return (
 		<>
@@ -32,7 +34,7 @@ const Header = () => {
 						</li>
 						<li className="px-5">
 							<a
-								href="/contact-us"
+								href="/contact"
 								className="border-b-2 border-red-600 hover:border-white hover:text-white">
 								Contact Us
 							</a>

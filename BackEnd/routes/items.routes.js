@@ -1,6 +1,6 @@
 import express from 'express'
-import itemController from '../controllers/item.controllers.js'
-import itemsController from '../controllers/items.controllers.js'
+import itemController from '../controllers/items/item.controllers.js'
+import itemsController from '../controllers/items/items.controllers.js'
 
 const router = express.Router()
 

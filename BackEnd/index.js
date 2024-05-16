@@ -2,6 +2,8 @@ import express from 'express'
 import itemsRoute from './routes/items.routes.js'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import cors from 'cors'
+
 
 const app = express()
 dotenv.config()
@@ -20,6 +22,7 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
+app.use(cors())
 app.use('/items', itemsRoute)
 
 app.get('/', (req, res) => {
